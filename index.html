@@ -1,7 +1,254 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Sobit Karki — Linux, Deep Learning, Blockchain. Based in Pokhara, Nepal." />
+  <title>Sobit Karki</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0d1117;
+      --surface: #161b22;
+      --border: #30363d;
+      --text: #e6edf3;
+      --muted: #8b949e;
+      --accent: #58a6ff;
+      --accent2: #3fb950;
+      --radius: 8px;
+    }
+
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .container { max-width: 860px; margin: 0 auto; padding: 0 1.5rem; }
+
+    /* ── Header ── */
+    header {
+      padding: 4rem 0 3rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero { display: flex; gap: 2rem; align-items: flex-start; }
+    .avatar {
+      width: 80px; height: 80px; border-radius: 50%;
+      background: linear-gradient(135deg, #1f6feb 0%, #388bfd 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.2rem; flex-shrink: 0;
+    }
+    .hero-text h1 { font-size: 1.75rem; font-weight: 700; margin-bottom: .25rem; }
+    .hero-text .title { color: var(--accent); font-size: .95rem; font-weight: 600; margin-bottom: .6rem; }
+    .hero-text p { color: var(--muted); max-width: 520px; font-size: .95rem; }
+    .location { display: inline-flex; align-items: center; gap: .35rem; color: var(--muted); font-size: .88rem; margin-top: .6rem; }
+
+    .links { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.2rem; }
+    .btn {
+      display: inline-flex; align-items: center; gap: .4rem;
+      padding: .4rem .9rem; border-radius: var(--radius);
+      font-size: .88rem; font-weight: 500; border: 1px solid var(--border);
+      background: var(--surface); color: var(--text);
+      transition: border-color .15s, background .15s;
+    }
+    .btn:hover { border-color: var(--accent); background: #1f2937; text-decoration: none; }
+    .btn.primary { background: var(--accent); color: #0d1117; border-color: var(--accent); font-weight: 600; }
+    .btn.primary:hover { background: #79c0ff; border-color: #79c0ff; }
+
+    /* ── Section ── */
+    section { padding: 2.8rem 0; border-bottom: 1px solid var(--border); }
+    section:last-of-type { border-bottom: none; }
+    h2 { font-size: 1.1rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 1.4rem; }
+
+    /* ── Skills ── */
+    .skill-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; }
+    .skill-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: .9rem 1rem;
+    }
+    .skill-card .cat { font-size: .75rem; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: .05em; margin-bottom: .6rem; }
+    .pills { display: flex; flex-wrap: wrap; gap: .4rem; }
+    .pill { font-size: .78rem; padding: .2rem .55rem; border-radius: 20px; background: #21262d; border: 1px solid var(--border); color: var(--muted); }
+
+    /* ── Projects ── */
+    .project-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1rem; }
+    .project-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.1rem 1.2rem;
+      display: flex; flex-direction: column; gap: .6rem;
+      transition: border-color .15s;
+    }
+    .project-card:hover { border-color: var(--accent); }
+    .project-card h3 { font-size: 1rem; font-weight: 600; }
+    .project-card h3 a { color: var(--text); }
+    .project-card h3 a:hover { color: var(--accent); text-decoration: none; }
+    .project-card p { font-size: .88rem; color: var(--muted); flex: 1; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: .35rem; }
+    .tag { font-size: .75rem; padding: .15rem .5rem; border-radius: 20px; border: 1px solid var(--border); color: var(--muted); }
+    .project-links { display: flex; gap: .6rem; margin-top: .2rem; }
+    .project-links a { font-size: .82rem; color: var(--accent2); display: flex; align-items: center; gap: .25rem; }
+    .project-links a:hover { text-decoration: underline; }
+
+    /* ── Currently ── */
+    .current-list { list-style: none; display: flex; flex-direction: column; gap: .7rem; }
+    .current-list li { display: flex; gap: .75rem; font-size: .95rem; color: var(--muted); }
+    .current-list li::before { content: "▸"; color: var(--accent); flex-shrink: 0; margin-top: .05rem; }
+    .current-list li a { color: var(--text); }
+
+    /* ── Footer ── */
+    footer { padding: 2rem 0; text-align: center; color: var(--muted); font-size: .85rem; }
+    footer a { color: var(--muted); }
+    footer a:hover { color: var(--text); }
+
+    @media (max-width: 560px) {
+      .hero { flex-direction: column; gap: 1rem; }
+      .project-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
 <body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
+
+<div class="container">
+
+  <header>
+    <div class="hero">
+      <div class="avatar">🧑‍💻</div>
+      <div class="hero-text">
+        <h1>Sobit Karki</h1>
+        <div class="title">Linux · Deep Learning · Blockchain</div>
+        <p>I build things at the intersection of systems programming and machine learning — from training large language models from scratch to engineering Nepal&rsquo;s stock market data pipelines.</p>
+        <span class="location">📍 Pokhara, Nepal</span>
+        <div class="links">
+          <a class="btn primary" href="https://sobitkarki.vercel.app/" target="_blank" rel="noreferrer">Portfolio ↗</a>
+          <a class="btn" href="https://github.com/sobitkarki1" target="_blank" rel="noreferrer">GitHub</a>
+          <a class="btn" href="https://nepse-dashboard.streamlit.app/" target="_blank" rel="noreferrer">NEPSE Dashboard ↗</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section>
+    <h2>Skills</h2>
+    <div class="skill-grid">
+      <div class="skill-card">
+        <div class="cat">AI / Machine Learning</div>
+        <div class="pills">
+          <span class="pill">PyTorch</span><span class="pill">NumPy</span><span class="pill">Pandas</span>
+          <span class="pill">LSTMs</span><span class="pill">Transformers</span><span class="pill">Jupyter</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="cat">Systems &amp; Low-level</div>
+        <div class="pills">
+          <span class="pill">Linux</span><span class="pill">C / C++</span><span class="pill">Bash</span>
+          <span class="pill">LFS</span><span class="pill">CMake</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="cat">Web</div>
+        <div class="pills">
+          <span class="pill">TypeScript</span><span class="pill">React</span><span class="pill">Vite</span>
+          <span class="pill">Tailwind CSS</span><span class="pill">Node.js</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="cat">Backend &amp; Data</div>
+        <div class="pills">
+          <span class="pill">Python</span><span class="pill">PHP</span><span class="pill">MySQL</span>
+          <span class="pill">REST APIs</span><span class="pill">Data Pipelines</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="cat">Tools</div>
+        <div class="pills">
+          <span class="pill">Git</span><span class="pill">Docker</span><span class="pill">GitHub Actions</span>
+          <span class="pill">Rust</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Projects</h2>
+    <div class="project-grid">
+
+      <div class="project-card">
+        <h3><a href="https://github.com/sobitkarki1/nn-v4" target="_blank" rel="noreferrer">nn-v4 — GPT Transformer</a></h3>
+        <p>1.5B-parameter GPT-style decoder-only transformer trained from scratch on The Pile. Flash Attention 2, mixed-precision, gradient checkpointing.</p>
+        <div class="project-tags"><span class="tag">PyTorch</span><span class="tag">Python</span><span class="tag">LLM</span><span class="tag">Deep Learning</span></div>
+        <div class="project-links"><a href="https://github.com/sobitkarki1/nn-v4" target="_blank" rel="noreferrer">Code →</a></div>
+      </div>
+
+      <div class="project-card">
+        <h3><a href="https://nepse-dashboard.streamlit.app/" target="_blank" rel="noreferrer">NEPSE Stock Dashboard</a></h3>
+        <p>Interactive dashboard for Nepal Stock Exchange — sector analysis, top performers, candlestick charts, and a data explorer with CSV export.</p>
+        <div class="project-tags"><span class="tag">Python</span><span class="tag">Streamlit</span><span class="tag">Plotly</span><span class="tag">Pandas</span></div>
+        <div class="project-links">
+          <a href="https://nepse-dashboard.streamlit.app/" target="_blank" rel="noreferrer">Live ↗</a>
+          <a href="https://github.com/sobitkarki1/nepse-dashboard-small" target="_blank" rel="noreferrer">Code →</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <h3><a href="https://github.com/sobitkarki1/nepse-stock-forecasting" target="_blank" rel="noreferrer">NEPSE Stock Forecasting</a></h3>
+        <p>ML pipeline for forecasting Nepal Stock Exchange prices — data engineering, LSTM modelling, and backtesting with MAE/RMSE evaluation.</p>
+        <div class="project-tags"><span class="tag">Python</span><span class="tag">LSTM</span><span class="tag">ML</span><span class="tag">NEPSE</span></div>
+        <div class="project-links"><a href="https://github.com/sobitkarki1/nepse-stock-forecasting" target="_blank" rel="noreferrer">Code →</a></div>
+      </div>
+
+      <div class="project-card">
+        <h3><a href="https://github.com/sobitkarki1/lfs" target="_blank" rel="noreferrer">Linux From Scratch</a></h3>
+        <p>Scripts and helper files from a complete LFS 12.3 build — compiling a working Linux system entirely from source code.</p>
+        <div class="project-tags"><span class="tag">Linux</span><span class="tag">Bash</span><span class="tag">Systems</span></div>
+        <div class="project-links"><a href="https://github.com/sobitkarki1/lfs" target="_blank" rel="noreferrer">Code →</a></div>
+      </div>
+
+      <div class="project-card">
+        <h3><a href="https://github.com/sobitkarki1/torchproj" target="_blank" rel="noreferrer">torchproj</a></h3>
+        <p>Primary PyTorch deep learning laboratory — architectures tested here before feeding into focused projects like the NEPSE forecasting pipeline.</p>
+        <div class="project-tags"><span class="tag">PyTorch</span><span class="tag">Python</span><span class="tag">Deep Learning</span></div>
+        <div class="project-links"><a href="https://github.com/sobitkarki1/torchproj" target="_blank" rel="noreferrer">Code →</a></div>
+      </div>
+
+      <div class="project-card">
+        <h3><a href="https://github.com/sobitkarki1/nn-numpy" target="_blank" rel="noreferrer">nn-numpy</a></h3>
+        <p>Two-layer neural network built from scratch with only NumPy — forward pass, backprop, and gradient descent implemented by hand on MNIST.</p>
+        <div class="project-tags"><span class="tag">NumPy</span><span class="tag">Python</span><span class="tag">MNIST</span></div>
+        <div class="project-links"><a href="https://github.com/sobitkarki1/nn-numpy" target="_blank" rel="noreferrer">Code →</a></div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <h2>Currently</h2>
+    <ul class="current-list">
+      <li>Training a <a href="https://github.com/sobitkarki1/nn-v4">1.5B-parameter GPT-style transformer</a> from scratch on a single GPU</li>
+      <li>Building ML forecasting models for the Nepal Stock Exchange</li>
+      <li>Deepening Rust and systems programming knowledge</li>
+      <li>Active since July 2021 — 65 repositories (50 public)</li>
+    </ul>
+  </section>
+
+</div>
+
+<footer>
+  <div class="container">
+    <a href="https://github.com/sobitkarki1">github.com/sobitkarki1</a>
+    &nbsp;·&nbsp;
+    <a href="https://sobitkarki.vercel.app/">sobitkarki.vercel.app</a>
+    &nbsp;·&nbsp;
+    Pokhara, Nepal
+  </div>
+</footer>
+
 </body>
 </html>
